@@ -21,7 +21,7 @@ public class AssertObjectsComparison implements Test{
     }
     @Override
     public void excecute(TestReport testreport)throws AssertionError{
-        if(comparisonbehavior.compare(expected,actual)) throw new AssertionError(message);
-        testreport.start("Assert: expected: "+ expected.toString());
+        if(!comparisonbehavior.compare(expected,actual)) throw new AssertionError(message);
+        testreport.start("Assert: expected: "+ expected.toString()+"\tactual: "+actual.toString());
     }
 }

@@ -17,7 +17,7 @@ public class AssertNullObjectComparison implements Test{
 
     @Override
     public void excecute(TestReport testreport) throws AssertionError{
-        if(nullComparisonBehavior.compare(object)) throw new AssertionError(message);
+        if(!nullComparisonBehavior.compare(object)) throw new AssertionError(message);
         testreport.start("Assert: condition ok");
     }
 }

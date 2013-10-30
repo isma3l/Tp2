@@ -18,7 +18,7 @@ public class AssertConditionComparison implements Test{
 
     @Override
     public void excecute(TestReport testreport)throws AssertionError{
-        if(conditioncomparisonbehavior.compare(condition)) throw new AssertionError(message);
+        if(!conditioncomparisonbehavior.compare(condition)) throw new AssertionError(message);
         testreport.start("Assert: condition ok");
     }
 }
