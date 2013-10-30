@@ -2,8 +2,6 @@
 public class fail extends Test{
     private String message;
 
-    public fail() {}
-
     public fail(String message) {
         this.message = message;
     }
