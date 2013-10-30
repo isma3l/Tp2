@@ -1,7 +1,7 @@
 
-public class EqualReferenceComparisonBehavior implements ObjectComparisonBehavior {
+public class EqualReferenceComparisonBehavior implements ObjectReferenceComparisonBehavior {
     @Override
-    public <T> boolean compare(T obj, T obj2) {
+    public boolean compare(Object obj, Object obj2) {
         return (obj==obj2);
     }
 }

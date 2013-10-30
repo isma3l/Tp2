@@ -1,5 +1,5 @@
 
-public class AssertConditionComparison implements Test{
+public class AssertConditionComparison extends Test{
     private boolean condition;
     private String message;
     private ConditionComparisonBehavior conditioncomparisonbehavior;
@@ -9,16 +9,16 @@ public class AssertConditionComparison implements Test{
         this.conditioncomparisonbehavior = conditioncomparisonbehavior;
     }
 
-    public AssertConditionComparison(boolean condition, String message,
-                                     ConditionComparisonBehavior conditioncomparisonbehavior) {
+    public AssertConditionComparison(boolean condition,
+                                     ConditionComparisonBehavior conditioncomparisonbehavior,
+                                     String message) {
         this.condition = condition;
         this.message = message;
         this.conditioncomparisonbehavior = conditioncomparisonbehavior;
     }
-
-    @Override
+     @Override
     public void excecute(TestReport testreport)throws AssertionError{
         if(!conditioncomparisonbehavior.compare(condition)) throw new AssertionError(message);
-        testreport.start("Assert: condition ok");
+        testreport.start(conditioncomparisonbehavior.getClass()+": condition ok");
     }
 }

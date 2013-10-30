@@ -1,23 +1,22 @@
 
-public class AssertNullObjectComparison implements Test{
+public class AssertNullObjectComparison extends Test{
     private Object object;
     private String message;
-    private NullComparisonBehavior nullComparisonBehavior;
+    private ReferenceComparisonBehavior nullComparisonBehavior;
 
-    public AssertNullObjectComparison(Object object, String message, NullComparisonBehavior nullComparisonBehavior) {
+    public AssertNullObjectComparison(Object object,ReferenceComparisonBehavior nullComparisonBehavior,String message) {
         this.object = object;
         this.message = message;
         this.nullComparisonBehavior = nullComparisonBehavior;
     }
-    public AssertNullObjectComparison(Object object, NullComparisonBehavior nullComparisonBehavior) {
+    public AssertNullObjectComparison(Object object, ReferenceComparisonBehavior nullComparisonBehavior) {
 
         this.object = object;
         this.nullComparisonBehavior = nullComparisonBehavior;
     }
-
     @Override
     public void excecute(TestReport testreport) throws AssertionError{
         if(!nullComparisonBehavior.compare(object)) throw new AssertionError(message);
-        testreport.start("Assert: condition ok");
+        testreport.start(nullComparisonBehavior.getClass()+": Null check ok");
     }
 }

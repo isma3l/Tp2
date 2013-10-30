@@ -6,9 +6,9 @@ public class TestReport {
        excecutedtests=0;
        message= new String();
     }
-    public void start(String testpassed){
+    public synchronized void start(String testpassed){
         excecutedtests++;
-        message+=testpassed;
-        System.out.println("TEST PASSED: "+Integer.toString(excecutedtests)+"\t"+message+"\n");
+        message=testpassed;
+        System.out.println("TEST PASSED: "+Integer.toString(excecutedtests)+"\t"+message);
     }
 }

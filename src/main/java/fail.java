@@ -1,5 +1,5 @@
 
-public class fail implements Test{
+public class fail extends Test{
     private String message;
 
     public fail() {}
@@ -7,8 +7,6 @@ public class fail implements Test{
     public fail(String message) {
         this.message = message;
     }
-
-    @Override
     public void excecute(TestReport testreport)throws AssertionError{
         throw new AssertionError(message);
     }
