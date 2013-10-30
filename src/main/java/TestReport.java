@@ -1,11 +1,13 @@
 
 public class TestReport {
-    public int excecutedtests;
-
+    private int excecutedtests;
+    private String message;
     public TestReport() {
        excecutedtests=0;
     }
-    public void start(Test test){
+    public void start(String testpassed){
         excecutedtests++;
+        message.concat(testpassed+"\n");
+        System.out.println("TEST PASSED: "+Integer.toString(excecutedtests)+"\t"+message);
     }
 }
