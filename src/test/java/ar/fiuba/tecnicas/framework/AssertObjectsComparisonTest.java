@@ -1,11 +1,9 @@
+package ar.fiuba.tecnicas.framework;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.regex.Matcher;
-
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertSame;
 
 public class AssertObjectsComparisonTest {
     private TestSuite testSuite;
@@ -70,6 +68,5 @@ public class AssertObjectsComparisonTest {
     @Test
     public void assertTest(){
         testSuite.getChild(0).excecute(testReport);
-
     }
 }
