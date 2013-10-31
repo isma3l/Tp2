@@ -6,7 +6,7 @@ package ar.fiuba.tecnicas.framework;
 
 import java.util.ArrayList;
 
-public class TestSuite implements Test {
+public class TestSuite extends Test {
     private ArrayList<Test> testlineitem;
 
     @Override

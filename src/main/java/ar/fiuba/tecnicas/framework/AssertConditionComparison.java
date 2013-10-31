@@ -6,7 +6,7 @@
 
 package ar.fiuba.tecnicas.framework;
 
-public class AssertConditionComparison implements Test {
+public class AssertConditionComparison extends Test {
     private boolean condition;
     private String message;
     private ConditionComparisonBehavior conditioncomparisonbehavior;

@@ -7,7 +7,7 @@ package ar.fiuba.tecnicas.framework;
 
 import java.util.Arrays;
 
-public class AssertArrayEquals<T> implements Test {
+public class AssertArrayEquals<T> extends Test {
     private T[] expecteds;
     private T[] actuals;
     private String message;

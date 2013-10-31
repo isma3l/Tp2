@@ -6,7 +6,7 @@
 
 package ar.fiuba.tecnicas.framework;
 
-public class AssertNullObjectComparison implements Test {
+public class AssertNullObjectComparison extends Test {
     private Object object;
     private String message;
     private ReferenceComparisonBehavior nullComparisonBehavior;

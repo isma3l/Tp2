@@ -6,7 +6,7 @@
 
 package ar.fiuba.tecnicas.framework;
 
-public class AssertObjectReferenceComparison implements Test {
+public class AssertObjectReferenceComparison extends Test {
     private Object expected;
     private Object actual;
     private String message;

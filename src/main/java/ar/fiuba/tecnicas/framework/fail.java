@@ -4,7 +4,7 @@
 
 package ar.fiuba.tecnicas.framework;
 
-public class fail implements Test {
+public class fail extends Test {
     private String message;
 
     public fail(String message) {

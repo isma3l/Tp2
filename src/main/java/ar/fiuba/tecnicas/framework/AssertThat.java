@@ -6,7 +6,7 @@
 package ar.fiuba.tecnicas.framework;
 import org.hamcrest.Matcher;
 
-public class AssertThat<T> implements Test {
+public class AssertThat<T> extends Test {
     private T actual;
     private Matcher<T> matcher;
     private String message;
