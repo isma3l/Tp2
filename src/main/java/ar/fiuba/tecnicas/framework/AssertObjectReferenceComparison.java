@@ -1,5 +1,12 @@
+/*
+    Se encarga realizar la comparacion de referencias de dos objetos.
+    Utiliza el patron strategy, y de acuerdo al tipo de ObjectReferenceComparisonBehavior
+    el resultado de la validacion sera distinto.
+ */
 
-public class AssertObjectReferenceComparison extends Test {
+package ar.fiuba.tecnicas.framework;
+
+public class AssertObjectReferenceComparison implements Test {
     private Object expected;
     private Object actual;
     private String message;

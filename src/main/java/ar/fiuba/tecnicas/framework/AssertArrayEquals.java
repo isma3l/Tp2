@@ -1,6 +1,13 @@
+/*
+    Se encarga de comprobar que dos Arrays genéricos posean la misma cantidad
+    de elementos y que sus elementos sean iguales.
+ */
+
+package ar.fiuba.tecnicas.framework;
+
 import java.util.Arrays;
 
-public class AssertArrayEquals<T> extends Test {
+public class AssertArrayEquals<T> implements Test {
     private T[] expecteds;
     private T[] actuals;
     private String message;

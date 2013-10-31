@@ -1,6 +1,12 @@
+/*
+    Compara un objeto a una org.hamcrest.Matcher para ver si el objeto
+    dado coincide con lo que el Matcher requiere que ésta coincida.
+ */
+
+package ar.fiuba.tecnicas.framework;
 import org.hamcrest.Matcher;
 
-public class AssertThat<T> extends   Test{
+public class AssertThat<T> implements Test {
     private T actual;
     private Matcher<T> matcher;
     private String message;

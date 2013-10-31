@@ -1,5 +1,11 @@
+/*
+    Se encarga de la comparacion de dos objetos, se usa el patron strategy,
+    y la validez depende del ObjectComparisonBehavior que reciba como parámetro.
+ */
 
-public class AssertObjectsComparison<T> extends Test{
+package ar.fiuba.tecnicas.framework;
+
+public class AssertObjectsComparison<T> implements Test {
     private T expected;
     private T actual;
     private String message;

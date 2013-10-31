@@ -1,5 +1,10 @@
+/*
+    Falla una prueba y lanza un assertionError.
+ */
 
-public class fail extends Test{
+package ar.fiuba.tecnicas.framework;
+
+public class fail implements Test {
     private String message;
 
     public fail(String message) {

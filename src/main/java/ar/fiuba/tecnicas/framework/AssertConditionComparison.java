@@ -1,5 +1,12 @@
+/*
+    Se encarga de comprobar que una condicion booleana sea válida.
+    Usa el patron Strategy, el resultado de la validacion dependera
+    según el tipo de ConditionComparisonBehavior que recibe como parametro al ser construida.
+ */
 
-public class AssertConditionComparison extends Test{
+package ar.fiuba.tecnicas.framework;
+
+public class AssertConditionComparison implements Test {
     private boolean condition;
     private String message;
     private ConditionComparisonBehavior conditioncomparisonbehavior;
