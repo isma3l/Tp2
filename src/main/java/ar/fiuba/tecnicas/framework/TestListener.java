@@ -1,8 +1,10 @@
 package ar.fiuba.tecnicas.framework;
 
 public interface TestListener {
-    public void addFailure(Test test, AssertionError assertionError);
+    public void addFailure(Test test);
     public void endTest(Test test);
     public void startTest(Test test);
-    void addError(Test test, Throwable exception);
+    public void addError(Test test);
+    public void addSuccess(TestCase test);
+    public void printSuiteTrace(Test test);
 }

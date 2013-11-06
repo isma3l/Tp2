@@ -7,15 +7,10 @@ public abstract class TestCase extends Assert implements Test{
         this.testname = testname;
     }
 
-    public TestCase() {
-        this.testname=null;
-    }
-
     @Override
     public void run(TestReport testReport) {
         testReport.run(this);
     }
-
     @Override
     public int countTestCases() {
         return 1;
@@ -41,5 +36,9 @@ public abstract class TestCase extends Assert implements Test{
             tearingDown(exception);
         }
         if (exception != null) throw exception;
+    }
+    @Override
+    public String toString() {
+        return (testname);
     }
 }

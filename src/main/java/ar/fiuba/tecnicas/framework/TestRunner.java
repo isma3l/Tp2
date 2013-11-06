@@ -1,33 +1,45 @@
 package ar.fiuba.tecnicas.framework;
 
 public class TestRunner implements TestListener{
-    @Override
-    public void addError(Test test, Throwable exception) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
     public static final int SUCCESS_EXIT = 0;
     public static final int FAILURE_EXIT = 1;
     public static final int EXCEPTION_EXIT = 2;
+    public static final int STATUS_ERROR = 1;
+    public static final int STATUS_FAILURE = 2;
     private ResultPrinter resultPrinter;
 
+    public void testStarted(String s) {}
+    public void testEnded(String s) {}
+    public void testFailed(int statusError, Test test) {}
     public TestRunner() {
         this.resultPrinter= new ResultPrinter(System.out);
     }
 
     @Override
-    public void addFailure(Test test, AssertionError assertionError) {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public void printSuiteTrace(Test test) {
+
     }
 
+    @Override
+    public void addSuccess(TestCase test) {
+
+    }
+
+    @Override
+    public void addError(Test test) {
+        testFailed(STATUS_ERROR, test);
+    }
+    @Override
+    public void addFailure(Test test) {
+        testFailed(STATUS_FAILURE, test);
+    }
     @Override
     public void endTest(Test test) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        testEnded(test.toString());
     }
-
     @Override
     public void startTest(Test test) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        testStarted(test.toString());
     }
     public static void main(String args[]) {
         TestRunner testRunner = new TestRunner();
@@ -42,17 +54,14 @@ public class TestRunner implements TestListener{
             System.exit(EXCEPTION_EXIT);
         }
     }
-
     private Test getTest(){
         TestWithFramework testWithFramework= new TestWithFramework();
         return testWithFramework.createTest();
     }
-
     private TestReport start(){
         Test test= getTest();
         return doRun(test);
     }
-
     private TestReport doRun(Test suite) {
         TestReport result = new TestReport();
         result.addListener(resultPrinter);
@@ -60,7 +69,7 @@ public class TestRunner implements TestListener{
         suite.run(result);
         long endTime = System.currentTimeMillis();
         long runTime = endTime - startTime;
-        resultPrinter.print(result, runTime);
+        resultPrinter.printFooter(result, runTime);
         return result;
     }
 }

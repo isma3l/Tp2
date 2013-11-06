@@ -9,6 +9,7 @@ import java.util.Vector;
 
 public class TestSuite implements Test {
     private Vector<Test> testlineitem;
+    private String testname;
     @Override
     public int countTestCases() {
         int count = 0;
@@ -17,17 +18,29 @@ public class TestSuite implements Test {
         }
         return count;
     }
+
+    @Override
+    public String toString() {
+        return testname;
+    }
+
     @Override
     public void run(TestReport testReport) {
-        Iterator<Test> it=testlineitem.iterator();
-        while ((it.hasNext()) &&(!testReport.shouldStop()))
-            runTest(it.next(),testReport);
+        testReport.printSuiteTrace(this);
+        for (Test test : testlineitem)
+            runTest(test,testReport);
     }
     public void runTest(Test test, TestReport testReport) {
         test.run(testReport);
     }
+    public TestSuite(String testname) {
+        this.testlineitem=new Vector<Test>();
+        this.testname=testname;
+    }
+
     public TestSuite() {
-        testlineitem=new Vector<Test>();
+        this.testlineitem=new Vector<Test>();
+        this.testname=null;
     }
 
     public Test testAt(int index) {

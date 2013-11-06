@@ -20,7 +20,7 @@ public class TestWithFramework{
     }
 
     public void conditionComparisonFalseTest() {
-        boolean falseCondition= (2>3);
+        boolean falseCondition= (2<3);
         Assert.assertFalse("The condition is true",falseCondition);
     }
 
@@ -56,7 +56,7 @@ public class TestWithFramework{
     }
 
     public Test createTest() {
-        TestSuite suite= new TestSuite();
+        TestSuite suite= new TestSuite("TestWithFramework");
         suite.addTest(new TestCase("objectComparisonEqualTest") {
              @Override
              public void runTest() {
