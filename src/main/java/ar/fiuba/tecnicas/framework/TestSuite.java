@@ -4,32 +4,37 @@
 
 package ar.fiuba.tecnicas.framework;
 
-import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Vector;
 
-public class TestSuite extends Test {
-    private ArrayList<Test> testlineitem;
-
+public class TestSuite implements Test {
+    private Vector<Test> testlineitem;
     @Override
-    public void excecute(TestReport testReport) {
-        for(Test test:testlineitem){
-            test.excecute(testReport);
+    public int countTestCases() {
+        int count = 0;
+        for (Test test : testlineitem) {
+            count += test.countTestCases();
         }
+        return count;
     }
-
+    @Override
+    public void run(TestReport testReport) {
+        Iterator<Test> it=testlineitem.iterator();
+        while ((it.hasNext()) &&(!testReport.shouldStop()))
+            runTest(it.next(),testReport);
+    }
+    public void runTest(Test test, TestReport testReport) {
+        test.run(testReport);
+    }
     public TestSuite() {
-        testlineitem=new ArrayList<Test>();
+        testlineitem=new Vector<Test>();
     }
 
-    public TestReport excecute(){
-        TestReport testReport=new TestReport();
-        excecute(testReport);
-        return testReport;
+    public Test testAt(int index) {
+        return testlineitem.get(index);
     }
-
     public void addTest(Test test){
         testlineitem.add(test);
     }
-    public Test getChild(int idx){
-        return testlineitem.get(idx);
-    }
+
 }
