@@ -8,8 +8,8 @@ public class TestFailure{
     private Throwable thrownException;
 
     public TestFailure(Test failedTest, Throwable thrownException) {
-        failedTest = failedTest;
-        thrownException = thrownException;
+        this.failedTest = failedTest;
+        this.thrownException = thrownException;
     }
     public Test failedTest() {
         return failedTest;

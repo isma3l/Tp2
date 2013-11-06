@@ -1,7 +1,5 @@
 package ar.fiuba.tecnicas.framework;
 
-import static org.hamcrest.CoreMatchers.is;
-
 public class TestRunner implements TestListener{
     @Override
     public void addError(Test test, Throwable exception) {

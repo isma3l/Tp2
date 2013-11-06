@@ -14,8 +14,13 @@ public class ResultPrinter implements TestListener{
 
     public void print(TestReport result, long runTime) {
         printHeader(runTime);
+        printErrors(result);
         printFailures(result);
         printFooter(result);
+    }
+
+    private void printErrors(TestReport result) {
+        printDefects(result.errors(), result.errorCount(), "error");
     }
 
     private void printHeader(long runTime) {
@@ -31,9 +36,10 @@ public class ResultPrinter implements TestListener{
         getWriter().println("There"+verbtobe + count + " " + type +pluralsuffix+":");
     }
     private void printDefects(Enumeration<TestFailure> failures, int count, String type) {
-            for (int i = 1; failures.hasMoreElements(); i++) {
-                printAmountDefectsMessage(count,type);
-                count--;
+        for (int i = 1; failures.hasMoreElements(); i++) {
+            printAmountDefectsMessage(count,type);
+            printDefect(failures.nextElement(),i);
+            count--;
         }
     }
 
@@ -53,15 +59,21 @@ public class ResultPrinter implements TestListener{
     private void printFooter(TestReport result) {
         getWriter().println();
         if (result.wasSuccessful()) {
-
-            getWriter().print("OK");
-            getWriter().println(" (" + result.runCount() + " test" + (result.runCount() == 1 ? "" : "s") + ")");
-
+            printSuccess(result);
         } else {
-            getWriter().println("FAILURES!!!");
-            getWriter().println("Tests run: " + result.runCount() +", Failures: " + result.failureCount());
+            printUnsuccess(result);
         }
         getWriter().println();
+    }
+
+    private void printUnsuccess(TestReport result) {
+        getWriter().println("FAILURES!!!");
+        getWriter().println("Tests run: " + result.runCount() +", Failures: " + result.failureCount());
+    }
+
+    private void printSuccess(TestReport result) {
+        getWriter().print("OK");
+        getWriter().println(" (" + result.runCount() + " test" + (result.runCount() == 1 ? "" : "s") + ")");
     }
 
     private String elapsedTimeAsString(long runTime) {

@@ -90,4 +90,12 @@ public class TestReport {
     public int runCount() {
         return runTests;
     }
+
+    public Enumeration<TestFailure> errors() {
+        return Collections.enumeration(testErrors);
+    }
+
+    public int errorCount() {
+        return testErrors.size();
+    }
 }
