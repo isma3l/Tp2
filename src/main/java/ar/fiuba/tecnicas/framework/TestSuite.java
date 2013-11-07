@@ -41,8 +41,10 @@ public class TestSuite extends Test {
 
     private void printSuiteTrace(Test test, TestReport testReport) {
         if (test instanceof TestCase){
-            testReport.print(getNameFather());
-            if (firsttimeinsuite) testReport.insertHSeparator();
+            if (firsttimeinsuite) {
+                testReport.print(getNameFather());
+                testReport.insertHSeparator();
+            }
             firsttimeinsuite=false;
         }else firsttimeinsuite=true;
     }
