@@ -4,11 +4,9 @@ public abstract class Test {
     public String getTestname() {
         return testname;
     }
-
     public Test(String testname) {
         this.testname = testname;
     }
-
     private String testname;
     public abstract void run(TestReport testReport);
     public abstract int countTestCases();

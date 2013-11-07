@@ -32,12 +32,21 @@ public class TestSuite extends Test {
 
     @Override
     public void run(TestReport testReport) {
-        if (!firsttimeinsuite) testReport.print(".");
-        firsttimeinsuite=false;
         testReport.printSuiteTrace(this);
-        for (Test test : testlineitem)
+        for (Test test : testlineitem){
+            printSuiteTrace(test,testReport);
             runTest(test,testReport);
+        }
     }
+
+    private void printSuiteTrace(Test test, TestReport testReport) {
+        if (test instanceof TestCase){
+            testReport.print(getNameFather());
+            if (firsttimeinsuite) testReport.insertHSeparator();
+            firsttimeinsuite=false;
+        }else firsttimeinsuite=true;
+    }
+
     public void runTest(Test test, TestReport testReport) {
         test.run(testReport);
     }

@@ -11,7 +11,6 @@ public class AllTests {
         SuiteATest suiteATest= new SuiteATest();
         suiteATest.createTest(suiteA);
         suite.addTest(suiteA);
-        //suite.addTest(new SuiteATest("SuiteATest"));
         return suite;
     }
 }

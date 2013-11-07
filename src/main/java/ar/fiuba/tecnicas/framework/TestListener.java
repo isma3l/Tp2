@@ -8,4 +8,5 @@ public interface TestListener {
     public void addSuccess(TestCase test,boolean firsttimeintest);
     public void printSuiteTrace(Test test);
     public void print(String messsage);
+    public void insertHSeparator();
 }

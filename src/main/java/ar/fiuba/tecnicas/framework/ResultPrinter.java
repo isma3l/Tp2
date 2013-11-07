@@ -11,9 +11,8 @@ public class ResultPrinter implements TestListener{
         printStream = writer;
     }
     public void printFooter(TestReport result,long runTime) {
-        printStream.println();
-        printStream.println("-----------------");
-        printSummary(result,runTime);
+      insertHSeparator();
+      printSummary(result,runTime);
     }
 
     private void printSummary(TestReport result,long runTime) {
@@ -38,25 +37,20 @@ public class ResultPrinter implements TestListener{
 
     @Override
     public void addSuccess(TestCase test,boolean firstimeintest) {
-        insertHSeparator(firstimeintest);
         printStream.println("[Ok]\t\t" + test);
     }
-
-    private void insertHSeparator(boolean firstimeintest) {
-        if (firstimeintest){
-            printStream.println();
-            printStream.println("==================");
-        }
+    @Override
+    public void insertHSeparator() {
+        printStream.println();
+        printStream.println("==================");
     }
 
     @Override
     public void addFailure(Test test,boolean firstimeintest) {
-        insertHSeparator(firstimeintest);
         printStream.println("[Failure]\t" + test);
     }
     @Override
     public void addError(Test test,boolean firstimeintest) {
-        insertHSeparator(firstimeintest);
         printStream.println("[Error]\t\t" + test);
     }
 

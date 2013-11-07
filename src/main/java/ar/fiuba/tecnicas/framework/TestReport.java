@@ -54,6 +54,11 @@ public class TestReport {
             testListener.printSuiteTrace(test);
         }
     }
+    public void insertHSeparator(){
+        for (TestListener testListener : testListeners) {
+            testListener.insertHSeparator();
+        }
+    }
     public void print(String messsage){
         for (TestListener testListener : testListeners) {
             testListener.print(messsage);

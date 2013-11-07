@@ -30,6 +30,11 @@ public class TestRunner implements TestListener{
     }
 
     @Override
+    public void insertHSeparator() {
+
+    }
+
+    @Override
     public void addError(Test test,boolean firstimeintest) {
         testFailed(STATUS_ERROR, test);
     }
