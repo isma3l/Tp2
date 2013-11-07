@@ -11,8 +11,8 @@ public class TestSuite extends Test {
     private Vector<Test> testlineitem;
     private boolean firsttimeinsuite;
     private TestSuite suiteFather;
-    @Override
-    public void setSuiteFather(TestSuite suiteFather)throws Exception{
+
+    public void setSuiteFather(TestSuite suiteFather) {
         this.suiteFather = suiteFather;
     }
 
@@ -69,10 +69,14 @@ public class TestSuite extends Test {
         return testlineitem.get(index);
     }
 
-    @Override
-    public void addTest(Test test)throws Exception{
+    public void addTest(TestCase test) {
+        if(!existsTest(test))
+            testlineitem.add(test);
+    }
+
+    public void addTestSuite(TestSuite test) {
         if(!existsTest(test)) {
-            if (test instanceof TestSuite) test.setSuiteFather(this);
+            test.setSuiteFather(this);
             testlineitem.add(test);
         }
     }

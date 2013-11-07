@@ -6,11 +6,11 @@ public class AllTests {
         TestSuite assertSuite= new TestSuite("AssertSuite");
         AssertTest assertTest= new AssertTest();
         assertTest.createTest(assertSuite);
-        suite.addTest(assertSuite);
+        suite.addTestSuite(assertSuite);
         TestSuite suiteA= new TestSuite("SuiteA");
         SuiteATest suiteATest= new SuiteATest();
         suiteATest.createTest(suiteA);
-        suite.addTest(suiteA);
+        suite.addTestSuite(suiteA);
         return suite;
     }
 }

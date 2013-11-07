@@ -30,7 +30,7 @@ public class SuiteATest implements TestCreator{
     }
 
     @Override
-    public void createTest(Test test) throws Exception {
+    public void createTest(TestSuite test) throws Exception {
         suite.addTest(new TestCase("assertArrayEqualsWithSetUpTest") {
             @Override
             public void runTest() {
@@ -49,6 +49,6 @@ public class SuiteATest implements TestCreator{
                 assertTrueWithSetUpTest();
             }
         });
-        test.addTest(suite);
+        test.addTestSuite(suite);
     }
 }

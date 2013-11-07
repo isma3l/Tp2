@@ -56,7 +56,7 @@ public class AssertTest implements TestCreator{
         Assert.assertThat("ActualArray size is not 4",actualArray.length, is(4));
     }
     @Override
-    public void createTest(Test test)throws Exception{
+    public void createTest(TestSuite test)throws Exception{
         test.addTest(new TestCase("objectComparisonEqualTest") {
             @Override
             public void runTest() {
