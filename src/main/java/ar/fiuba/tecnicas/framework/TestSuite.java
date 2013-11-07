@@ -6,7 +6,9 @@ package ar.fiuba.tecnicas.framework;
 
 
 import java.util.Vector;
-
+/*
+Responsabilidad: almacenar test y testsuite en una estructura (es el la clase "composite")
+* */
 public class TestSuite extends Test {
     private Vector<Test> testlineitem;
     private boolean firsttimeinsuite;
@@ -68,7 +70,10 @@ public class TestSuite extends Test {
     public Test testAt(int index) {
         return testlineitem.get(index);
     }
+    public void removeTest(Test test){
+        testlineitem.remove(test);
 
+    }
     public void addTest(TestCase test) {
         if(!existsTest(test))
             testlineitem.add(test);
@@ -96,5 +101,7 @@ public class TestSuite extends Test {
             return suiteFather.getNameFather() + "." +getTestname();
         }
     }
-
+    public Vector<Test> getTestlineitemtest(){
+        return testlineitem;
+    }
 }

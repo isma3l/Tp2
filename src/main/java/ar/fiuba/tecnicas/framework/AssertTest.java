@@ -1,7 +1,9 @@
 package ar.fiuba.tecnicas.framework;
 
 import static org.hamcrest.CoreMatchers.is;
-
+/*
+Responsabilidad: Controlar una serie de test creados por el usuario
+ */
 public class AssertTest implements TestCreator{
 
     public void objectComparisonEqualTest() {

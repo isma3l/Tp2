@@ -1,7 +1,9 @@
 package ar.fiuba.tecnicas.framework;
 
 import java.util.Arrays;
-
+/*
+Responsabilidad: Proveer una biblioteca de métodos a usar para realizar test de assertion
+ */
 public class Assert{
     public static<T> void assertArrayEquals(T[] expecteds, T[] actuals)throws AssertionError{
         if (!Arrays.equals(expecteds, actuals)) throw new AssertionError();

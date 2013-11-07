@@ -1,6 +1,7 @@
 package ar.fiuba.tecnicas.framework;
-
-import java.util.Map;
+/*
+Responsabilidad: Ejecutar test con metodos que permitan ejecutar algo antes y algo despues del test
+ */
 
 public abstract class TestCase extends Test{
     public TestCase(String testname) {

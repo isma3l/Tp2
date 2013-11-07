@@ -1,7 +1,9 @@
 package ar.fiuba.tecnicas.framework;
 
 import java.util.HashMap;
-
+/*
+Responsabilidad: Definir una interfaz para los elementos de la composicion
+ */
 public abstract class Test<T> {
     private String testname;
     private HashMap<String,T> context;

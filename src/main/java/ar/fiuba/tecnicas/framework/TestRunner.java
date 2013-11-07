@@ -1,5 +1,7 @@
 package ar.fiuba.tecnicas.framework;
-
+ /*
+ Responsabilidad: Crear y correr test ya definidos o un grupo de test definidios filtrado con expresiones regulares
+ */
 public class TestRunner implements TestListener{
     public static final int SUCCESS_EXIT = 0;
     public static final int FAILURE_EXIT = 1;
