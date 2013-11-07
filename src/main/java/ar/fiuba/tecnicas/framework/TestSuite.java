@@ -11,6 +11,8 @@ public class TestSuite implements Test {
     private Vector<Test> testlineitem;
     private String testname;
     private boolean firsttimeinsuite;
+    private TestSuite suiteFather;
+
     @Override
     public int countTestCases() {
         int count = 0;
@@ -21,8 +23,13 @@ public class TestSuite implements Test {
     }
 
     @Override
-    public String toString() {
+    public String getName() {
         return testname;
+    }
+
+    @Override
+    public String toString() {
+        return  getNameFather();
     }
 
     @Override
@@ -40,19 +47,44 @@ public class TestSuite implements Test {
         this.testlineitem=new Vector<Test>();
         this.testname=testname;
         this.firsttimeinsuite=true;
+        suiteFather = null;
     }
 
     public TestSuite() {
         this.testlineitem=new Vector<Test>();
         this.testname=null;
         this.firsttimeinsuite=true;
+        suiteFather = null;
     }
 
     public Test testAt(int index) {
         return testlineitem.get(index);
     }
-    public void addTest(Test test){
-        testlineitem.add(test);
+    public void addTest(TestCase test){
+        if(!existsTest(test))
+            testlineitem.add(test);
+    }
+    public void addTestSuite(TestSuite test) {
+        if(!existsTest(test)) {
+            test.suiteFather = this;
+            testlineitem.add(test);
+        }
+    }
+
+    private boolean existsTest(Test newTest) {
+        for(Test test: testlineitem) {
+            if (test.getName().equals(newTest.getName()))
+                return true;
+        }
+        return false;
+    }
+
+    private String getNameFather() {
+        if(suiteFather == null)
+            return testname;
+        else {
+            return suiteFather.getNameFather() + "." + testname;
+        }
     }
 
 }

@@ -42,4 +42,9 @@ public abstract class TestCase extends Assert implements Test{
     public String toString() {
         return (testname);
     }
+
+    @Override
+    public String getName() {
+        return testname;
+    }
 }
