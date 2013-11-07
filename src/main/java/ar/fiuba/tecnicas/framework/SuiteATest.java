@@ -1,8 +1,8 @@
 package ar.fiuba.tecnicas.framework;
 
+
 public class SuiteATest implements TestCreator{
     private TestSuite suite;
-    private boolean trueCondition;
     public SuiteATest() {
         this.suite=new TestSuite("SuiteATest"){
             @Override
@@ -17,13 +17,13 @@ public class SuiteATest implements TestCreator{
     }
     public void assetEqualWithSetUpTest() {
 
-        Assert.assertEquals("Objects have different value",suite.getContext().get("k"), suite.getContext().get("h"));
+        Assert.assertEquals("Objects have different value", suite.getContext().get("k"), suite.getContext().get("h"));
     }
     public void assertArrayEqualsWithSetUpTest() {
-        Assert.assertArrayEquals("Arrays have different value",((int[])suite.getContext().get("list1")[0]),list2);
+        Assert.assertArrayEquals("Arrays have different value",(Object[])suite.getContext().get("list1"),(Object[])suite.getContext().get("list2"));
     }
     public void assertTrueWithSetUpTest() {
-        Assert.assertTrue("The condition is false",trueCondition);
+        Assert.assertTrue("The condition is false",(Boolean)suite.getContext().get("trueCondition"));
     }
 
     @Override

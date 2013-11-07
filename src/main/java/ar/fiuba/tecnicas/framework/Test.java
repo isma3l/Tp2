@@ -1,18 +1,19 @@
 package ar.fiuba.tecnicas.framework;
 
-import java.util.Map;
+import java.util.HashMap;
 
-public abstract class Test {
+public abstract class Test<T> {
     private String testname;
-    private Map<String,Object> context;
+    private HashMap<String,T> context;
     public String getTestname() {
         return testname;
     }
     public Test(String testname) {
         this.testname = testname;
+        context=new HashMap<String,T>();
     }
 
-    public Map<String, Object> getContext() {
+    public HashMap<String, T> getContext() {
         return context;
     }
 
