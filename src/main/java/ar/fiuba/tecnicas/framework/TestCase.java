@@ -1,5 +1,7 @@
 package ar.fiuba.tecnicas.framework;
 
+import java.util.Map;
+
 public abstract class TestCase extends Test{
     public TestCase(String testname) {
         super(testname);
@@ -23,6 +25,7 @@ public abstract class TestCase extends Test{
             if (exception == null) exception = tearingDown;
         }
     }
+
     public void runTestSequence()throws Throwable{
         Throwable exception = null;
         setUp();
