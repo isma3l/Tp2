@@ -9,6 +9,7 @@ public class TestReport {
     private int oktest;
     private int errortest;
     private int failedtest;
+    private PatternRecognizer recognizerExpressions;
 
     public void setFirsttimeintest(boolean firsttimeintest) {
         this.firsttimeintest = firsttimeintest;
@@ -23,7 +24,13 @@ public class TestReport {
         errortest=0;
         failedtest=0;
         firsttimeintest=true;
+        recognizerExpressions = null;
     }
+
+    public void initializeRecognizerExpression(String expressionRegular) {
+        recognizerExpressions = new PatternRecognizer(expressionRegular);
+    }
+
     public void startTest(Test test) {
         for (TestListener testlistener : testListeners) {
             testlistener.startTest(test);
@@ -32,21 +39,21 @@ public class TestReport {
     public void addSuccess(TestCase test) {
         runTests++;
         for (TestListener testListener : testListeners) {
-            testListener.addSuccess(test,firsttimeintest);
+            testListener.addSuccess(test, firsttimeintest);
         }
     }
     public void addFailure(Test test) {
         failedtest++;
         runTests++;
         for (TestListener testListener : testListeners) {
-            testListener.addFailure(test,firsttimeintest);
+            testListener.addFailure(test, firsttimeintest);
         }
     }
     public void addError(Test test) {
         errortest++;
         runTests++;
         for (TestListener testListener : testListeners) {
-            testListener.addError(test,firsttimeintest);
+            testListener.addError(test, firsttimeintest);
         }
     }
     public void printSuiteTrace(Test test){
@@ -77,9 +84,10 @@ public class TestReport {
     }
     protected void run(final TestCase test) {
         startTest(test);
+        if(!validateNameTest(test)) return;
         try {
-            test.runTestSequence();
-            addSuccess(test);
+             test.runTestSequence();
+             addSuccess(test);
         } catch (AssertionError assertionError) {
             addFailure(test);
         } catch (Throwable exception) {
@@ -87,6 +95,13 @@ public class TestReport {
         }
 
         endTest(test);
+    }
+
+    private boolean validateNameTest(Test test) {
+        if(recognizerExpressions != null) {
+            return recognizerExpressions.matchName(test.getTestname());
+        }
+        return true;
     }
 
     public boolean wasSuccessful() {

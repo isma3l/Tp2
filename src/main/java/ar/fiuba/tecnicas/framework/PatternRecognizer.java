@@ -8,14 +8,20 @@ import java.util.regex.Pattern;
 public class PatternRecognizer {
     private Pattern pattern;
     private Matcher matcher;
+    private String regularExpression;
 
-    public PatternRecognizer(String pattern) {
-        this.pattern = Pattern.compile(pattern);
+    public PatternRecognizer(String expression) {
+        regularExpression = expression;
+        pattern = Pattern.compile(expression);
     }
 
-    public boolean matchName(String name) {
-        matcher = pattern.matcher(name);
-        return matcher.find();
+    public boolean matchName(String nameTest) {
+        if(!regularExpression.equals("")) {
+            matcher = pattern.matcher(nameTest);
+            return matcher.find();
+        }
+        else
+            return true;
     }
 }
 
