@@ -87,7 +87,7 @@ public class TestRunner implements TestListener{
     }
 
     private void setRegularExpression(String args[]) {
-        if(args.length > 1)
+        if(args.length > 0 )
             this.regularExpression = args[0];
     }
 }
