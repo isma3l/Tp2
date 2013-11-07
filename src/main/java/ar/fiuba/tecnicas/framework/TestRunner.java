@@ -58,12 +58,13 @@ public class TestRunner implements TestListener{
             System.exit(EXCEPTION_EXIT);
         }
     }
-    private Test getTest(){
-        TestWithFramework testWithFramework= new TestWithFramework();
-        return testWithFramework.createTest();
+    private Test getTest() throws Exception {
+        return AllTests.suite();
     }
-    private TestReport start(){
+    private TestReport start() throws Exception {
+        System.out.println("start de testrunner");
         Test test= getTest();
+        System.out.println("va a empezar dorun");
         return doRun(test);
     }
     private TestReport doRun(Test suite) {

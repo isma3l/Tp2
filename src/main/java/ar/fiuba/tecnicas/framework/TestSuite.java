@@ -7,11 +7,14 @@ package ar.fiuba.tecnicas.framework;
 
 import java.util.Vector;
 
-public class TestSuite implements Test {
+public class TestSuite extends Test {
     private Vector<Test> testlineitem;
-    private String testname;
     private boolean firsttimeinsuite;
     private TestSuite suiteFather;
+    @Override
+    public void setSuiteFather(TestSuite suiteFather)throws Exception{
+        this.suiteFather = suiteFather;
+    }
 
     @Override
     public int countTestCases() {
@@ -20,11 +23,6 @@ public class TestSuite implements Test {
             count += test.countTestCases();
         }
         return count;
-    }
-
-    @Override
-    public String getName() {
-        return testname;
     }
 
     @Override
@@ -44,15 +42,15 @@ public class TestSuite implements Test {
         test.run(testReport);
     }
     public TestSuite(String testname) {
+        super(testname);
         this.testlineitem=new Vector<Test>();
-        this.testname=testname;
         this.firsttimeinsuite=true;
         suiteFather = null;
     }
 
     public TestSuite() {
+        super(null);
         this.testlineitem=new Vector<Test>();
-        this.testname=null;
         this.firsttimeinsuite=true;
         suiteFather = null;
     }
@@ -60,20 +58,18 @@ public class TestSuite implements Test {
     public Test testAt(int index) {
         return testlineitem.get(index);
     }
-    public void addTest(TestCase test){
-        if(!existsTest(test))
-            testlineitem.add(test);
-    }
-    public void addTestSuite(TestSuite test) {
+
+    @Override
+    public void addTest(Test test)throws Exception{
         if(!existsTest(test)) {
-            test.suiteFather = this;
+            if (test instanceof TestSuite) test.setSuiteFather(this);
             testlineitem.add(test);
         }
     }
 
     private boolean existsTest(Test newTest) {
         for(Test test: testlineitem) {
-            if (test.getName().equals(newTest.getName()))
+            if (test.getTestname().equals(newTest.getTestname()))
                 return true;
         }
         return false;
@@ -81,9 +77,9 @@ public class TestSuite implements Test {
 
     private String getNameFather() {
         if(suiteFather == null)
-            return testname;
+            return getTestname();
         else {
-            return suiteFather.getNameFather() + "." + testname;
+            return suiteFather.getNameFather() + "." +getTestname();
         }
     }
 

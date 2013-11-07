@@ -1,10 +1,8 @@
 package ar.fiuba.tecnicas.framework;
 
-public abstract class TestCase extends Assert implements Test{
-    private String testname;
-
+public abstract class TestCase extends Test{
     public TestCase(String testname) {
-        this.testname = testname;
+        super(testname);
     }
 
     @Override
@@ -16,8 +14,7 @@ public abstract class TestCase extends Assert implements Test{
     public int countTestCases() {
         return 1;
     }
-    public void setUp() throws Exception {}
-    public void tearDown() throws Exception {}
+
     public abstract void runTest();
     private void tearingDown(Throwable exception){
         try {
@@ -40,11 +37,6 @@ public abstract class TestCase extends Assert implements Test{
     }
     @Override
     public String toString() {
-        return (testname);
-    }
-
-    @Override
-    public String getName() {
-        return testname;
+        return getTestname();
     }
 }

@@ -38,18 +38,25 @@ public class ResultPrinter implements TestListener{
 
     @Override
     public void addSuccess(TestCase test,boolean firstimeintest) {
+        insertHSeparator(firstimeintest);
+        printStream.println("[Ok]\t\t" + test);
+    }
+
+    private void insertHSeparator(boolean firstimeintest) {
         if (firstimeintest){
             printStream.println();
             printStream.println("==================");
         }
-        printStream.println("[Ok]\t\t" + test);
     }
+
     @Override
     public void addFailure(Test test,boolean firstimeintest) {
+        insertHSeparator(firstimeintest);
         printStream.println("[Failure]\t" + test);
     }
     @Override
     public void addError(Test test,boolean firstimeintest) {
+        insertHSeparator(firstimeintest);
         printStream.println("[Error]\t\t" + test);
     }
 

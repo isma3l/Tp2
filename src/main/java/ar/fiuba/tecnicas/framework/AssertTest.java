@@ -2,10 +2,11 @@ package ar.fiuba.tecnicas.framework;
 
 import static org.hamcrest.CoreMatchers.is;
 
-public class TestWithFramework{
+public class AssertTest implements TestCreator{
+
     public void objectComparisonEqualTest() {
-        Integer k=2;
-        Integer h=2;
+        int k=2;
+        int h=2;
         Assert.assertEquals("Objects have different value", k, h);
     }
     public void assertArrayEqualsTest() {
@@ -25,8 +26,8 @@ public class TestWithFramework{
     }
 
     public void referenceComparisonSameTest() {
-        Integer num1 = 2;
-        Integer num2 = num1;
+        int num1 = 2;
+        int num2 = num1;
         Assert.assertSame("Objects have different reference",num1,num2);
     }
     public void doubleComparisonEquals(){
@@ -36,8 +37,8 @@ public class TestWithFramework{
         Assert.assertEquals("2.32456 is not equal to 2.32466 considering delta 0.01",num1,num2,delta);
     }
     public void referenceComparisonNotSameTest() {
-        Integer num1 = 2;
-        Integer num2 = 6;
+        int num1 = 2;
+        int num2 = 6;
         Assert.assertNotSame("num1 and num2 have the same reference",num1,num2);
     }
 
@@ -51,72 +52,70 @@ public class TestWithFramework{
     }
 
     public void assertThatTest() {
-        Integer[] actualArray={1,2,3,4};
+        int[] actualArray={1,2,3,4};
         Assert.assertThat("ActualArray size is not 4",actualArray.length, is(4));
     }
-
-    public Test createTest() {
-        TestSuite suite= new TestSuite("TestWithFramework");
-        suite.addTest(new TestCase("objectComparisonEqualTest") {
-             @Override
-             public void runTest() {
-                 objectComparisonEqualTest();
-             }
-         });
-        suite.addTest(new TestCase("assertArrayEqualsTest") {
+    @Override
+    public void createTest(Test test)throws Exception{
+        test.addTest(new TestCase("objectComparisonEqualTest") {
+            @Override
+            public void runTest() {
+                objectComparisonEqualTest();
+            }
+        });
+        test.addTest(new TestCase("assertArrayEqualsTest") {
             @Override
             public void runTest() {
                 assertArrayEqualsTest();
             }
         });
-        suite.addTest(new TestCase("conditionComparisonTrueTest") {
+        test.addTest(new TestCase("conditionComparisonTrueTest") {
             @Override
             public void runTest(){
                 conditionComparisonTrueTest();
             }
         });
-        suite.addTest(new TestCase("conditionComparisonFalseTest") {
+        test.addTest(new TestCase("conditionComparisonFalseTest") {
             @Override
             public void runTest(){
                 conditionComparisonFalseTest();
             }
         });
-        suite.addTest(new TestCase("referenceComparisonSameTest") {
+        test.addTest(new TestCase("referenceComparisonSameTest") {
             @Override
             public void runTest(){
                 referenceComparisonSameTest();
             }
         });
-        suite.addTest(new TestCase("doubleComparisonEquals") {
+        test.addTest(new TestCase("doubleComparisonEquals") {
             @Override
             public void runTest(){
                 doubleComparisonEquals();
             }
         });
-        suite.addTest(new TestCase("referenceComparisonNotSameTest") {
+        test.addTest(new TestCase("referenceComparisonNotSameTest") {
             @Override
             public void runTest(){
                 referenceComparisonNotSameTest();
             }
         });
-        suite.addTest(new TestCase("nullObjectComparisonTest") {
+        test.addTest(new TestCase("nullObjectComparisonTest") {
             @Override
             public void runTest(){
                 nullObjectComparisonTest();
             }
         });
-        suite.addTest(new TestCase("notNullObjectComparisonTest") {
+        test.addTest(new TestCase("notNullObjectComparisonTest") {
             @Override
             public void runTest(){
                 notNullObjectComparisonTest();
             }
         });
-        suite.addTest(new TestCase("assertThatTest") {
+        test.addTest(new TestCase("assertThatTest") {
             @Override
             public void runTest(){
                 assertThatTest();
             }
         });
-        return suite;
     }
 }
