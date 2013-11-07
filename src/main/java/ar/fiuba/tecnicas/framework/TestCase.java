@@ -10,6 +10,7 @@ public abstract class TestCase extends Assert implements Test{
     @Override
     public void run(TestReport testReport) {
         testReport.run(this);
+        testReport.setFirsttimeintest(false);
     }
     @Override
     public int countTestCases() {

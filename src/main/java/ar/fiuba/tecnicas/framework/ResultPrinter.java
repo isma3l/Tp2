@@ -37,15 +37,24 @@ public class ResultPrinter implements TestListener{
     }
 
     @Override
-    public void addSuccess(TestCase test) {
+    public void addSuccess(TestCase test,boolean firstimeintest) {
+        if (firstimeintest){
+            printStream.println();
+            printStream.println("==================");
+        }
         printStream.println("[Ok]\t\t" + test);
     }
     @Override
-    public void addFailure(Test test) {
+    public void addFailure(Test test,boolean firstimeintest) {
         printStream.println("[Failure]\t" + test);
     }
     @Override
-    public void addError(Test test) {
+    public void addError(Test test,boolean firstimeintest) {
         printStream.println("[Error]\t\t" + test);
+    }
+
+    @Override
+    public void print(String messsage) {
+        printStream.print(messsage);
     }
 }

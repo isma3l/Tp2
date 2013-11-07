@@ -10,12 +10,19 @@ public class TestReport {
     private int errortest;
     private int failedtest;
 
+    public void setFirsttimeintest(boolean firsttimeintest) {
+        this.firsttimeintest = firsttimeintest;
+    }
+
+    private boolean firsttimeintest;
+
     public TestReport() {
         testListeners = new ArrayList<TestListener>();
         runTests = 0;
         oktest=0;
         errortest=0;
         failedtest=0;
+        firsttimeintest=true;
     }
     public void startTest(Test test) {
         for (TestListener testlistener : testListeners) {
@@ -25,26 +32,31 @@ public class TestReport {
     public void addSuccess(TestCase test) {
         runTests++;
         for (TestListener testListener : testListeners) {
-            testListener.addSuccess(test);
+            testListener.addSuccess(test,firsttimeintest);
         }
     }
     public void addFailure(Test test) {
         failedtest++;
         runTests++;
         for (TestListener testListener : testListeners) {
-            testListener.addFailure(test);
+            testListener.addFailure(test,firsttimeintest);
         }
     }
     public void addError(Test test) {
         errortest++;
         runTests++;
         for (TestListener testListener : testListeners) {
-            testListener.addError(test);
+            testListener.addError(test,firsttimeintest);
         }
     }
     public void printSuiteTrace(Test test){
         for (TestListener testListener : testListeners) {
             testListener.printSuiteTrace(test);
+        }
+    }
+    public void print(String messsage){
+        for (TestListener testListener : testListeners) {
+            testListener.print(messsage);
         }
     }
     public void addListener(TestListener listener) {

@@ -4,12 +4,13 @@
 
 package ar.fiuba.tecnicas.framework;
 
-import java.util.Iterator;
+
 import java.util.Vector;
 
 public class TestSuite implements Test {
     private Vector<Test> testlineitem;
     private String testname;
+    private boolean firsttimeinsuite;
     @Override
     public int countTestCases() {
         int count = 0;
@@ -26,6 +27,8 @@ public class TestSuite implements Test {
 
     @Override
     public void run(TestReport testReport) {
+        if (!firsttimeinsuite) testReport.print(".");
+        firsttimeinsuite=false;
         testReport.printSuiteTrace(this);
         for (Test test : testlineitem)
             runTest(test,testReport);
@@ -36,11 +39,13 @@ public class TestSuite implements Test {
     public TestSuite(String testname) {
         this.testlineitem=new Vector<Test>();
         this.testname=testname;
+        this.firsttimeinsuite=true;
     }
 
     public TestSuite() {
         this.testlineitem=new Vector<Test>();
         this.testname=null;
+        this.firsttimeinsuite=true;
     }
 
     public Test testAt(int index) {

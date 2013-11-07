@@ -16,21 +16,25 @@ public class TestRunner implements TestListener{
     }
 
     @Override
+    public void print(String messsage) {
+    }
+
+    @Override
     public void printSuiteTrace(Test test) {
 
     }
 
     @Override
-    public void addSuccess(TestCase test) {
+    public void addSuccess(TestCase test,boolean firstimeintest) {
 
     }
 
     @Override
-    public void addError(Test test) {
+    public void addError(Test test,boolean firstimeintest) {
         testFailed(STATUS_ERROR, test);
     }
     @Override
-    public void addFailure(Test test) {
+    public void addFailure(Test test,boolean firstimeintest) {
         testFailed(STATUS_FAILURE, test);
     }
     @Override
