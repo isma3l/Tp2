@@ -32,7 +32,6 @@ public class TestSuite extends Test {
 
     @Override
     public void run(TestReport testReport) {
-        testReport.printSuiteTrace(this);
         for (Test test : testlineitem){
             printSuiteTrace(test,testReport);
             runTest(test,testReport);
@@ -87,9 +86,9 @@ public class TestSuite extends Test {
     }
 
     private String getNameFather() {
-        if(suiteFather == null)
+        if(suiteFather == null){
             return getTestname();
-        else {
+        }else {
             return suiteFather.getNameFather() + "." +getTestname();
         }
     }
