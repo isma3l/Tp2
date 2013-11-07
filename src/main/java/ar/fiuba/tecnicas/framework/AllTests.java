@@ -5,9 +5,7 @@ public class AllTests {
         TestSuite suite= new TestSuite("AllTests");
         TestSuite assertSuite= new TestSuite("AssertSuite");
         AssertTest assertTest= new AssertTest();
-        System.out.println("Aca llega");
         assertTest.createTest(assertSuite);
-        System.out.println("Aca llega 2");
         suite.addTest(assertSuite);
         TestSuite suiteA= new TestSuite("SuiteA");
         SuiteATest suiteATest= new SuiteATest();

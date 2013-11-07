@@ -62,9 +62,7 @@ public class TestRunner implements TestListener{
         return AllTests.suite();
     }
     private TestReport start() throws Exception {
-        System.out.println("start de testrunner");
         Test test= getTest();
-        System.out.println("va a empezar dorun");
         return doRun(test);
     }
     private TestReport doRun(Test suite) {
