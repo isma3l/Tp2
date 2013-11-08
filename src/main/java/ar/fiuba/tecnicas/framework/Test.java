@@ -14,15 +14,9 @@ public abstract class Test<T> {
         this.testname = testname;
         context=new HashMap<String,T>();
     }
-
     public HashMap<String, T> getContext() {
         return context;
     }
-
-    public abstract void run(TestReport testReport) throws Throwable;
-    public abstract int countTestCases();
-    public void setUp(){}
-    public void tearDown(){}
     public void tearingDown(Throwable exception){
         try {
             tearDown();
@@ -30,5 +24,9 @@ public abstract class Test<T> {
             if (exception == null) exception = tearingDown;
         }
     }
+    public abstract void run(TestReport testReport) throws Throwable;
+    public abstract int countTestCases();
+    public void setUp(){}
+    public void tearDown(){}
 
 }
