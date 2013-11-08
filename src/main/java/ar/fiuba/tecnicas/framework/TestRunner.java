@@ -64,7 +64,7 @@ public class TestRunner implements TestListener{
                 System.exit(FAILURE_EXIT);
             }
             System.exit(SUCCESS_EXIT);
-        } catch (Exception e) {
+        } catch (Throwable e) {
             System.err.println(e.getMessage());
             System.exit(EXCEPTION_EXIT);
         }
@@ -72,11 +72,11 @@ public class TestRunner implements TestListener{
     private Test getTest() throws Exception {
         return AllTests.suite();
     }
-    private TestReport start() throws Exception {
+    private TestReport start() throws Throwable {
         Test test= getTest();
         return doRun(test);
     }
-    private TestReport doRun(Test suite) {
+    private TestReport doRun(Test suite) throws Throwable {
         TestReport result = new TestReport();
         result.initializeRecognizerExpression(regularExpression);
         result.addListener(resultPrinter);

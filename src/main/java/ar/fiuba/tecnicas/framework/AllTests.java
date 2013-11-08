@@ -1,6 +1,5 @@
 package ar.fiuba.tecnicas.framework;
 
-import java.util.Vector;
 
 public class AllTests {
     public static Test suite() throws Exception {

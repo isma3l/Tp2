@@ -19,9 +19,16 @@ public abstract class Test<T> {
         return context;
     }
 
-    public abstract void run(TestReport testReport);
+    public abstract void run(TestReport testReport) throws Throwable;
     public abstract int countTestCases();
-    public void setUp() throws Exception {}
-    public void tearDown() throws Exception {}
+    public void setUp(){}
+    public void tearDown(){}
+    public void tearingDown(Throwable exception){
+        try {
+            tearDown();
+        } catch (Throwable tearingDown) {
+            if (exception == null) exception = tearingDown;
+        }
+    }
 
 }

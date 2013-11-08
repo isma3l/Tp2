@@ -33,11 +33,20 @@ public class TestSuite extends Test {
     }
 
     @Override
-    public void run(TestReport testReport) {
-        for (Test test : testlineitem){
-            printSuiteTrace(test,testReport);
-            runTest(test,testReport);
+    public void run(TestReport testReport) throws Throwable {
+        Throwable exception = null;
+        setUp();
+        try{
+            for (Test test : testlineitem){
+                printSuiteTrace(test,testReport);
+                runTest(test,testReport);
+            }
+        }catch (Throwable running) {
+            exception = running;
+        } finally {
+            tearingDown(exception);
         }
+        if (exception != null) throw exception;
     }
 
     private void printSuiteTrace(Test test, TestReport testReport) {
@@ -50,7 +59,7 @@ public class TestSuite extends Test {
         }else firsttimeinsuite=true;
     }
 
-    public void runTest(Test test, TestReport testReport) {
+    public void runTest(Test test, TestReport testReport) throws Throwable {
         test.run(testReport);
     }
     public TestSuite(String testname) {

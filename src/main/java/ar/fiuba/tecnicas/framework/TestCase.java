@@ -19,13 +19,6 @@ public abstract class TestCase extends Test{
     }
 
     public abstract void runTest();
-    private void tearingDown(Throwable exception){
-        try {
-            tearDown();
-        } catch (Throwable tearingDown) {
-            if (exception == null) exception = tearingDown;
-        }
-    }
 
     public void runTestSequence()throws Throwable{
         Throwable exception = null;
