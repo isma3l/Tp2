@@ -17,7 +17,6 @@ public abstract class TestCase extends Test{
     public int countTestCases() {
         return 1;
     }
-
     public abstract void runTest();
 
     public void runTestSequence()throws Throwable{

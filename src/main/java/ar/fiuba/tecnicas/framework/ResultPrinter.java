@@ -4,7 +4,7 @@ import java.io.PrintStream;
 import java.text.NumberFormat;
 import java.util.Enumeration;
 
-public class ResultPrinter implements TestListener{
+public class ResultPrinter extends TestListener{
     PrintStream printStream;
 
     public ResultPrinter(PrintStream writer) {
@@ -14,7 +14,6 @@ public class ResultPrinter implements TestListener{
       insertHSeparator();
       printSummary(result,runTime);
     }
-
     private void printSummary(TestReport result,long runTime) {
         printStream.println("SUMMARY");
         printStream.println("Time: " + elapsedTimeAsString(runTime));
@@ -25,16 +24,6 @@ public class ResultPrinter implements TestListener{
     private String elapsedTimeAsString(long runTime) {
         return NumberFormat.getInstance().format((double) runTime / 1000);
     }
-    @Override
-    public void endTest(Test test) {}
-    @Override
-    public void startTest(Test test) {}
-
-    @Override
-    public void printSuiteTrace(Test test) {
-       printStream.print(test);
-    }
-
     @Override
     public void addSuccess(TestCase test,boolean firstimeintest) {
         printStream.println("[Ok]\t\t" + test);

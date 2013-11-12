@@ -30,12 +30,6 @@ public class TestReport {
     public void initializeRecognizerExpression(String expressionRegular) {
         recognizerExpressions = new PatternRecognizer(expressionRegular);
     }
-
-    public void startTest(Test test) {
-        for (TestListener testlistener : testListeners) {
-            testlistener.startTest(test);
-        }
-    }
     public void addSuccess(TestCase test) {
         runTests++;
         for (TestListener testListener : testListeners) {
@@ -56,11 +50,6 @@ public class TestReport {
             testListener.addError(test, firsttimeintest);
         }
     }
-    public void printSuiteTrace(Test test){
-        for (TestListener testListener : testListeners) {
-            testListener.printSuiteTrace(test);
-        }
-    }
     public void insertHSeparator(){
         for (TestListener testListener : testListeners) {
             testListener.insertHSeparator();
@@ -74,16 +63,7 @@ public class TestReport {
     public void addListener(TestListener listener) {
         testListeners.add(listener);
     }
-    public void removeListener(TestListener listener) {
-        testListeners.remove(listener);
-    }
-    public void endTest(Test test) {
-        for (TestListener testListener : testListeners) {
-            testListener.endTest(test);
-        }
-    }
     protected void run(final TestCase test) {
-        startTest(test);
         if(!validateNameTest(test)) return;
         try {
              test.runTestSequence();
@@ -93,13 +73,11 @@ public class TestReport {
         } catch (Throwable exception) {
             addError(test);
         }
-
-        endTest(test);
     }
 
     private boolean validateNameTest(Test test) {
         if(recognizerExpressions != null) {
-            return recognizerExpressions.matchName(test.getTestname());
+            return recognizerExpressions.matchName(test.toString());
         }
         return true;
     }

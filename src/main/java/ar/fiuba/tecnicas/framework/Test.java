@@ -7,12 +7,20 @@ Responsabilidad: Definir una interfaz para los elementos de la composicion
 public abstract class Test<T> {
     private String testname;
     private HashMap<String,T> context;
-    public String getTestname() {
-        return testname;
-    }
+    private TestSuite suiteFather;
     public Test(String testname) {
         this.testname = testname;
         context=new HashMap<String,T>();
+        suiteFather=null;
+    }
+    public void setSuiteFather(TestSuite suiteFather) {
+        this.suiteFather = suiteFather;
+    }
+    public TestSuite getSuiteFather() {
+        return suiteFather;
+    }
+    public String getTestname() {
+        return testname;
     }
     public HashMap<String, T> getContext() {
         return context;
@@ -28,5 +36,4 @@ public abstract class Test<T> {
     public abstract int countTestCases();
     public void setUp(){}
     public void tearDown(){}
-
 }

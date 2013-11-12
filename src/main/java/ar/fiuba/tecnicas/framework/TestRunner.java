@@ -2,57 +2,16 @@ package ar.fiuba.tecnicas.framework;
  /*
  Responsabilidad: Crear y correr test ya definidos o un grupo de test definidios filtrado con expresiones regulares
  */
-public class TestRunner implements TestListener{
+public class TestRunner extends TestListener{
     public static final int SUCCESS_EXIT = 0;
     public static final int FAILURE_EXIT = 1;
     public static final int EXCEPTION_EXIT = 2;
-    public static final int STATUS_ERROR = 1;
-    public static final int STATUS_FAILURE = 2;
     private ResultPrinter resultPrinter;
     private String regularExpression;
 
-    public void testStarted(String s) {}
-    public void testEnded(String s) {}
-    public void testFailed(int statusError, Test test) {}
     public TestRunner() {
         this.resultPrinter= new ResultPrinter(System.out);
         regularExpression = "";
-    }
-
-    @Override
-    public void print(String messsage) {
-    }
-
-    @Override
-    public void printSuiteTrace(Test test) {
-
-    }
-
-    @Override
-    public void addSuccess(TestCase test,boolean firstimeintest) {
-
-    }
-
-    @Override
-    public void insertHSeparator() {
-
-    }
-
-    @Override
-    public void addError(Test test,boolean firstimeintest) {
-        testFailed(STATUS_ERROR, test);
-    }
-    @Override
-    public void addFailure(Test test,boolean firstimeintest) {
-        testFailed(STATUS_FAILURE, test);
-    }
-    @Override
-    public void endTest(Test test) {
-        testEnded(test.toString());
-    }
-    @Override
-    public void startTest(Test test) {
-        testStarted(test.toString());
     }
     public static void main(String args[]) {
         TestRunner testRunner = new TestRunner();
@@ -87,7 +46,6 @@ public class TestRunner implements TestListener{
         resultPrinter.printFooter(result, runTime);
         return result;
     }
-
     private void setRegularExpression(String args[]) {
         if(args.length > 0 )
             this.regularExpression = args[0];

@@ -48,6 +48,6 @@ public class SuiteATest implements TestCreator{
                 assertTrueWithSetUpTest();
             }
         });
-        test.addTestSuite(suite);
+        test.addTest(suite);
     }
 }

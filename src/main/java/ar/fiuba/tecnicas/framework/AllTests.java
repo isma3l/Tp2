@@ -7,11 +7,11 @@ public class AllTests {
         TestSuite assertSuite= new TestSuite("AssertSuite");
         AssertTest assertTest= new AssertTest();
         assertTest.createTest(assertSuite);
-        suite.addTestSuite(assertSuite);
+        suite.addTest(assertSuite);
         TestSuite suiteA= new TestSuite("SuiteA");
         SuiteATest suiteATest= new SuiteATest();
         suiteATest.createTest(suiteA);
-        suite.addTestSuite(suiteA);
+        suite.addTest(suiteA);
         return suite;
     }
 }
