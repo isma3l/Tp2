@@ -3,6 +3,7 @@ package ar.fiuba.tecnicas.framework;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 
 public class PatternRecognizer {
@@ -10,7 +11,7 @@ public class PatternRecognizer {
     private Matcher matcher;
     private String regularExpression;
 
-    public PatternRecognizer(String expression) {
+    public PatternRecognizer(String expression)throws PatternSyntaxException{
         regularExpression = expression;
         pattern = Pattern.compile(expression);
     }

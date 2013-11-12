@@ -64,18 +64,20 @@ public class TestSuite extends Test {
     }
     @Override
     public void run(TestReport testReport) throws Throwable {
-        Throwable exception = null;
-        setUp();
-        try{
-            for (Test test : testlineitem){
-                printSuiteTrace(test,testReport);
-                test.run(testReport);
+        if (testReport.testsuiteNameMatchRegularExpression(this)){
+            Throwable exception = null;
+            setUp();
+            try{
+                for (Test test : testlineitem){
+                    printSuiteTrace(test,testReport);
+                    test.run(testReport);
+                }
+            }catch (Throwable running) {
+                exception = running;
+            } finally {
+                tearingDown(exception);
             }
-        }catch (Throwable running) {
-            exception = running;
-        } finally {
-            tearingDown(exception);
+            if (exception != null) throw exception;
         }
-        if (exception != null) throw exception;
     }
 }

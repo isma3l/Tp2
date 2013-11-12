@@ -1,5 +1,8 @@
 package ar.fiuba.tecnicas.framework;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static org.hamcrest.CoreMatchers.is;
 /*
 Responsabilidad: Controlar una serie de test creados por el usuario
@@ -59,7 +62,7 @@ public class AssertTest implements TestCreator{
     }
     @Override
     public void createTest(TestSuite test)throws Exception{
-        test.addTest(new TestCase("objectComparisonEqualTest") {
+        test.addTest(new TestCase("objectComparisonEqualTest", Arrays.asList("SLOW","INTERNET")) {
             @Override
             public void runTest() {
                 objectComparisonEqualTest();
@@ -71,7 +74,7 @@ public class AssertTest implements TestCreator{
                 assertArrayEqualsTest();
             }
         });
-        test.addTest(new TestCase("conditionComparisonTrueTest") {
+        test.addTest(new TestCase("conditionComparisonTrueTest",Arrays.asList("INTERNET")) {
             @Override
             public void runTest(){
                 conditionComparisonTrueTest();
