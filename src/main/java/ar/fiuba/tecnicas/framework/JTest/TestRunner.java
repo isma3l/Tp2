@@ -93,6 +93,7 @@ public class TestRunner {
         result.setRecognizerExpressionsTestsuite(new PatternRecognizer(regexpTestsuite));
         result.setRecognizerTag(new RecognizerTag(argtags));
         result.addListener(resultPrinter);
+        result.addListener(new XmlPrinter());
         return result;
     }
 }

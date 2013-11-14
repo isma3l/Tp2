@@ -54,18 +54,18 @@ public class TestReport {
             testListener.addSuccess(test, timer.getTime());
         }
     }
-    public void addFailure(Test test,Timer timer) {
+    public void addFailure(Test test,Timer timer, Throwable throwable) {
         failedtest++;
         runTests++;
         for (TestListener testListener : testListeners) {
-            testListener.addFailure(test, timer.getTime());
+            testListener.addFailure(test, timer.getTime(), throwable);
         }
     }
-    public void addError(Test test,Timer timer) {
+    public void addError(Test test,Timer timer, Throwable throwable) {
         errortest++;
         runTests++;
         for (TestListener testListener : testListeners) {
-            testListener.addError(test, timer.getTime());
+            testListener.addError(test, timer.getTime(), throwable);
         }
     }
     public void insertHSeparator(){
@@ -88,10 +88,9 @@ public class TestReport {
                  test.runTestSequence();
                  addSuccess(test,timer);
             } catch (AssertionError assertionError) {
-                addFailure(test,timer);
-                System.out.println(assertionError);
+                addFailure(test,timer, assertionError);
             } catch (Throwable exception) {
-                addError(test,timer);
+                addError(test,timer, exception);
             }
         }
     }

@@ -3,7 +3,7 @@ package ar.fiuba.tecnicas.framework.JTest;
 import java.io.PrintStream;
 import java.text.NumberFormat;
 
-public class ResultPrinter extends TestListener{
+public class ResultPrinter implements TestListener{
     PrintStream printStream;
 
     public ResultPrinter(PrintStream writer) {
@@ -24,7 +24,7 @@ public class ResultPrinter extends TestListener{
     }
     @Override
     public void addSuccess(TestCase test, String time) {
-        printStream.println("[Ok]\t\t" + test + "\t\t" + time);
+        printStream.println("[Ok]\t\t" + test + "\t\t\t\t\t" + time);
     }
     @Override
     public void insertHSeparator() {
@@ -33,11 +33,11 @@ public class ResultPrinter extends TestListener{
     }
 
     @Override
-    public void addFailure(Test test, String time) {
+    public void addFailure(Test test, String time, Throwable throwable) {
         printStream.println("[Failure]\t" + test + "\t\t" + time);
     }
     @Override
-    public void addError(Test test, String time) {
+    public void addError(Test test, String time, Throwable throwable) {
         printStream.println("[Error]\t\t" + test + "\t\t" + time);
     }
 
