@@ -1,4 +1,4 @@
-package ar.fiuba.tecnicas.framework;
+package ar.fiuba.tecnicas.framework.JTest;
 
 public abstract class  TestListener {
     public void addFailure(Test test, String time)throws UnsupportedOperationException{

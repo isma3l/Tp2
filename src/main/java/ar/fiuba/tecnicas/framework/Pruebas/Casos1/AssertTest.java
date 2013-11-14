@@ -1,8 +1,7 @@
 package ar.fiuba.tecnicas.framework.Pruebas.Casos1;
 
-import ar.fiuba.tecnicas.framework.*;
+import ar.fiuba.tecnicas.framework.JTest.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.is;

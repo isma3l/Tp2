@@ -1,4 +1,4 @@
-package ar.fiuba.tecnicas.framework;
+package ar.fiuba.tecnicas.framework.JTest;
 
 
 public class XmlPrinter extends TestListener {

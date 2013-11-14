@@ -1,8 +1,7 @@
-package ar.fiuba.tecnicas.framework;
+package ar.fiuba.tecnicas.framework.JTest;
 
 import java.io.PrintStream;
 import java.text.NumberFormat;
-import java.util.Enumeration;
 
 public class ResultPrinter extends TestListener{
     PrintStream printStream;

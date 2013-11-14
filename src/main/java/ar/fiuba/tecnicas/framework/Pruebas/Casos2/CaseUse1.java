@@ -1,8 +1,8 @@
 package ar.fiuba.tecnicas.framework.Pruebas.Casos2;
 
-import ar.fiuba.tecnicas.framework.*;
+import ar.fiuba.tecnicas.framework.JTest.*;
 
-public class CaseUse1 implements TestCreator{
+public class CaseUse1 implements TestCreator {
     @Override
     public Test getTest() throws Exception {
         TestSuite suite =new TestSuite("TS1");

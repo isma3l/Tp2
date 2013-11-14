@@ -1,10 +1,9 @@
-package ar.fiuba.tecnicas.framework;
+package ar.fiuba.tecnicas.framework.JTest;
 /*
 Responsabilidad: Ejecutar test con metodos que permitan ejecutar algo antes y algo despues del test
  */
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public abstract class TestCase extends Test{

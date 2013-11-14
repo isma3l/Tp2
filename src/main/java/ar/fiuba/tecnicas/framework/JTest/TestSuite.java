@@ -2,7 +2,7 @@
 
  */
 
-package ar.fiuba.tecnicas.framework;
+package ar.fiuba.tecnicas.framework.JTest;
 
 import java.util.Vector;
 /*

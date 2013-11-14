@@ -1,7 +1,7 @@
 package ar.fiuba.tecnicas.framework.Pruebas.Casos2;
 
 
-import ar.fiuba.tecnicas.framework.*;
+import ar.fiuba.tecnicas.framework.JTest.*;
 
 public class CaseUse5 implements TestCreator {
     @Override

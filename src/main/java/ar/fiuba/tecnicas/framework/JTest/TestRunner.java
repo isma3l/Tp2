@@ -1,5 +1,7 @@
-package ar.fiuba.tecnicas.framework;
+package ar.fiuba.tecnicas.framework.JTest;
 
+import ar.fiuba.tecnicas.framework.ArgumentValidator;
+import ar.fiuba.tecnicas.framework.Usage;
 import com.sun.javaws.exceptions.InvalidArgumentException;
 
 import java.util.ArrayList;

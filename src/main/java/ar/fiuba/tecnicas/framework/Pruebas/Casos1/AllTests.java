@@ -1,7 +1,9 @@
 package ar.fiuba.tecnicas.framework.Pruebas.Casos1;
 
 
-import ar.fiuba.tecnicas.framework.*;
+import ar.fiuba.tecnicas.framework.JTest.Test;
+import ar.fiuba.tecnicas.framework.JTest.TestCreator;
+import ar.fiuba.tecnicas.framework.JTest.TestSuite;
 
 public class AllTests implements TestCreator {
     public Test getTest()throws Exception {
