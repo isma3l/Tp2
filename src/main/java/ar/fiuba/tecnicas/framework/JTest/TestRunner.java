@@ -81,12 +81,8 @@ public class TestRunner {
     }
     private TestReport doRun(Test suite) throws Throwable {
         TestReport result = createTestReport();
-
-        long startTime = System.currentTimeMillis();
         suite.run(result);
-        long endTime = System.currentTimeMillis();
-        long runTime = endTime - startTime;
-        resultPrinter.printFooter(result, runTime);
+        resultPrinter.printFooter(result);
         return result;
     }
 

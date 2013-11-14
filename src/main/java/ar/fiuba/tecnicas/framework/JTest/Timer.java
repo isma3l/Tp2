@@ -4,15 +4,15 @@ package ar.fiuba.tecnicas.framework.JTest;
 import java.text.NumberFormat;
 
 public class Timer {
-    private static long startTime;
-
-    public static void initialize() {
-        long startTime = System.currentTimeMillis();
+    private long startTime;
+    private long runTime;
+    public Timer(long startTime) {
+        this.startTime = startTime;
+        this.runTime=0;
     }
-
-    public static String getTime() {
+    public String getTime() {
         long endTime = System.currentTimeMillis();
-        long runTime = endTime - startTime;
+        runTime = endTime - startTime;
         return NumberFormat.getInstance().format((double) runTime / 1000);
     }
 }

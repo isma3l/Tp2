@@ -48,24 +48,24 @@ public class TestReport {
         this.recognizerTags = recognizerTags;
     }
 
-    public void addSuccess(TestCase test) {
+    public void addSuccess(TestCase test,Timer timer) {
         runTests++;
         for (TestListener testListener : testListeners) {
-            testListener.addSuccess(test, Timer.getTime());
+            testListener.addSuccess(test, timer.getTime());
         }
     }
-    public void addFailure(Test test) {
+    public void addFailure(Test test,Timer timer) {
         failedtest++;
         runTests++;
         for (TestListener testListener : testListeners) {
-            testListener.addFailure(test, Timer.getTime());
+            testListener.addFailure(test, timer.getTime());
         }
     }
-    public void addError(Test test) {
+    public void addError(Test test,Timer timer) {
         errortest++;
         runTests++;
         for (TestListener testListener : testListeners) {
-            testListener.addError(test, Timer.getTime());
+            testListener.addError(test, timer.getTime());
         }
     }
     public void insertHSeparator(){
@@ -82,16 +82,16 @@ public class TestReport {
         testListeners.add(listener);
     }
     public void run(final TestCase test) {
+        Timer timer= new Timer(System.currentTimeMillis());
         if(validateTestCase(test)){
-            Timer.initialize();
             try {
                  test.runTestSequence();
-                 addSuccess(test);
+                 addSuccess(test,timer);
             } catch (AssertionError assertionError) {
-                addFailure(test);
+                addFailure(test,timer);
                 System.out.println(assertionError);
             } catch (Throwable exception) {
-                addError(test);
+                addError(test,timer);
             }
         }
     }

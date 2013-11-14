@@ -9,13 +9,12 @@ public class ResultPrinter extends TestListener{
     public ResultPrinter(PrintStream writer) {
         printStream = writer;
     }
-    public void printFooter(TestReport result,long runTime) {
+    public void printFooter(TestReport result) {
       insertHSeparator();
-      printSummary(result,runTime);
+      printSummary(result);
     }
-    private void printSummary(TestReport result,long runTime) {
+    private void printSummary(TestReport result) {
         printStream.println("SUMMARY");
-        printStream.println("Time: " + elapsedTimeAsString(runTime));
         printStream.println("Run: " + result.runCount());
         printStream.println("Failures: " + result.failureCount());
         printStream.println("Errors: " + result.errorCount());
