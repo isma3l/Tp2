@@ -82,7 +82,7 @@ public class TestReport {
         testListeners.add(listener);
     }
     public void run(final TestCase test) {
-        Timer timer= new Timer(System.currentTimeMillis());
+        Timer timer= new Timer(System.nanoTime());
         if(validateTestCase(test)){
             try {
                  test.runTestSequence();
