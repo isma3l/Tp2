@@ -25,8 +25,8 @@ public class ResultPrinter extends TestListener{
         return NumberFormat.getInstance().format((double) runTime / 1000);
     }
     @Override
-    public void addSuccess(TestCase test,boolean firstimeintest) {
-        printStream.println("[Ok]\t\t" + test);
+    public void addSuccess(TestCase test, String time) {
+        printStream.println("[Ok]\t\t" + test + "\t\t" + time);
     }
     @Override
     public void insertHSeparator() {
@@ -35,12 +35,12 @@ public class ResultPrinter extends TestListener{
     }
 
     @Override
-    public void addFailure(Test test,boolean firstimeintest) {
-        printStream.println("[Failure]\t" + test);
+    public void addFailure(Test test, String time) {
+        printStream.println("[Failure]\t" + test + "\t\t" + time);
     }
     @Override
-    public void addError(Test test,boolean firstimeintest) {
-        printStream.println("[Error]\t\t" + test);
+    public void addError(Test test, String time) {
+        printStream.println("[Error]\t\t" + test + "\t\t" + time);
     }
 
     @Override

@@ -19,6 +19,9 @@ public class CaseUse1 implements TestCreator{
         return suite;
     }
 
+    // para correr el test se paso como parametros el tag: SLOW
+    // mediante el parametro: -tctags SLOW
+    // y sólo se ejecuta el test T1 y T3
     public static void main(String args[]) {
         TestCreator creatorTest = new CaseUse1();
         TestRunner.setCreatorTest(creatorTest);

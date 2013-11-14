@@ -51,21 +51,21 @@ public class TestReport {
     public void addSuccess(TestCase test) {
         runTests++;
         for (TestListener testListener : testListeners) {
-            testListener.addSuccess(test, firsttimeintest);
+            testListener.addSuccess(test, Timer.getTime());
         }
     }
     public void addFailure(Test test) {
         failedtest++;
         runTests++;
         for (TestListener testListener : testListeners) {
-            testListener.addFailure(test, firsttimeintest);
+            testListener.addFailure(test, Timer.getTime());
         }
     }
     public void addError(Test test) {
         errortest++;
         runTests++;
         for (TestListener testListener : testListeners) {
-            testListener.addError(test, firsttimeintest);
+            testListener.addError(test, Timer.getTime());
         }
     }
     public void insertHSeparator(){
@@ -83,11 +83,13 @@ public class TestReport {
     }
     public void run(final TestCase test) {
         if(validateTestCase(test)){
+            Timer.initialize();
             try {
                  test.runTestSequence();
                  addSuccess(test);
             } catch (AssertionError assertionError) {
                 addFailure(test);
+                System.out.println(assertionError);
             } catch (Throwable exception) {
                 addError(test);
             }
