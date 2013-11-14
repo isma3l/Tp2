@@ -9,9 +9,12 @@ import java.util.List;
 
 public abstract class TestCase extends Test{
     private List<String> tags;
+    private boolean skype;
+
     public TestCase(String testname) {
         super(testname);
         tags= new ArrayList<String>();
+        skype = false;
     }
     public TestCase(String testname,List<String> tags) {
         super(testname);
@@ -52,8 +55,26 @@ public abstract class TestCase extends Test{
     public boolean containsAllTags(List<String> tags){
         return this.tags.containsAll(tags);
     }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
     @Override
     public String toString() {
         return getTestname();
+    }
+
+
+    public void skype() {
+        skype = true;
+    }
+
+    public void unSkype() {
+        skype = false;
+    }
+
+    public boolean isSkype() {
+        return skype;
     }
 }

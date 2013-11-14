@@ -16,9 +16,9 @@ public class PatternRecognizer {
         pattern = Pattern.compile(expression);
     }
 
-    public boolean matchName(String nameTest) {
+    public boolean validate(String name) {
         if(!regularExpression.equals("")) {
-            matcher = pattern.matcher(nameTest);
+            matcher = pattern.matcher(name);
             return matcher.find();
         }
         else

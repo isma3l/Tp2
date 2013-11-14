@@ -1,7 +1,9 @@
-package ar.fiuba.tecnicas.framework;
+package ar.fiuba.tecnicas.framework.Pruebas.Casos1;
 
 
-public class SuiteATest implements TestCreator{
+import ar.fiuba.tecnicas.framework.*;
+
+public class SuiteATest implements TestCreator {
     private TestSuite suite;
     public SuiteATest() {
         this.suite=new TestSuite("SuiteATest"){
@@ -29,7 +31,7 @@ public class SuiteATest implements TestCreator{
     }
 
     @Override
-    public void createTest(TestSuite test) throws Exception {
+    public Test getTest()throws Exception {
         suite.addTest(new TestCase("assertArrayEqualsWithSetUpTest") {
             @Override
             public void runTest() {
@@ -48,6 +50,6 @@ public class SuiteATest implements TestCreator{
                 assertTrueWithSetUpTest();
             }
         });
-        test.addTest(suite);
+        return suite;
     }
 }

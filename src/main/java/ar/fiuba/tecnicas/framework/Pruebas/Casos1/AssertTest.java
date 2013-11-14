@@ -1,4 +1,6 @@
-package ar.fiuba.tecnicas.framework;
+package ar.fiuba.tecnicas.framework.Pruebas.Casos1;
+
+import ar.fiuba.tecnicas.framework.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,7 +9,7 @@ import static org.hamcrest.CoreMatchers.is;
 /*
 Responsabilidad: Controlar una serie de test creados por el usuario
  */
-public class AssertTest implements TestCreator{
+public class AssertTest implements TestCreator {
 
     public void objectComparisonEqualTest() {
         int k=2;
@@ -60,8 +62,12 @@ public class AssertTest implements TestCreator{
         int[] actualArray={1,2,3,4};
         Assert.assertThat("ActualArray size is not 4",actualArray.length, is(4));
     }
+
+
     @Override
-    public void createTest(TestSuite test)throws Exception{
+    public Test getTest()throws Exception {
+        TestSuite test = new TestSuite("AssertSuite");
+
         test.addTest(new TestCase("objectComparisonEqualTest", Arrays.asList("SLOW","INTERNET")) {
             @Override
             public void runTest() {
@@ -122,5 +128,6 @@ public class AssertTest implements TestCreator{
                 assertThatTest();
             }
         });
+        return test;
     }
 }

@@ -1,5 +1,8 @@
 package ar.fiuba.tecnicas.framework;
 
+// Responsabilidad: Valida que los argumentos ingresados sean expresiones regulares o tags
+// y se los envia a testrunner
+
 import com.sun.javaws.exceptions.InvalidArgumentException;
 
 import java.util.Arrays;

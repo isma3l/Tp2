@@ -11,6 +11,7 @@ public class TestReport {
     private int failedtest;
     private PatternRecognizer recognizerExpressionsTestcase;
     private PatternRecognizer recognizerExpressionsTestsuite;
+    private RecognizerTag recognizerTags;
 
     public void setFirsttimeintest(boolean firsttimeintest) {
         this.firsttimeintest = firsttimeintest;
@@ -27,12 +28,26 @@ public class TestReport {
         firsttimeintest=true;
         recognizerExpressionsTestcase = null;
         recognizerExpressionsTestsuite=null;
+        recognizerTags = null;
     }
 
     public void initializeRecognizerExpression(String testcaseregexp,String testsuiteregexp) {
         recognizerExpressionsTestcase = new PatternRecognizer(testcaseregexp);
         recognizerExpressionsTestsuite= new PatternRecognizer(testsuiteregexp);
     }
+
+    public void setRecognizerExpressionsTestcase(PatternRecognizer recognizer) {
+        recognizerExpressionsTestcase = recognizer;
+    }
+
+    public void setRecognizerExpressionsTestsuite(PatternRecognizer recognizer) {
+        recognizerExpressionsTestsuite = recognizer;
+    }
+
+    public void setRecognizerTag(RecognizerTag recognizerTags) {
+        this.recognizerTags = recognizerTags;
+    }
+
     public void addSuccess(TestCase test) {
         runTests++;
         for (TestListener testListener : testListeners) {
@@ -67,7 +82,7 @@ public class TestReport {
         testListeners.add(listener);
     }
     public void run(final TestCase test) {
-        if(testNameMatchRegularExpression(test)){
+        if(validateTestCase(test)){
             try {
                  test.runTestSequence();
                  addSuccess(test);
@@ -79,11 +94,19 @@ public class TestReport {
         }
     }
 
+    private boolean validateTestCase(TestCase test) {
+        return (testNameMatchRegularExpression(test)) && validateTagTestCase(test) && !test.isSkype();
+    }
+
+    private boolean validateTagTestCase(TestCase test) {
+        return recognizerTags.validate(test.getTags());
+    }
+
     private boolean testNameMatchRegularExpression(Test test) {
-        return recognizerExpressionsTestcase == null || recognizerExpressionsTestcase.matchName(test.toString());
+        return recognizerExpressionsTestcase == null || recognizerExpressionsTestcase.validate(test.toString());
     }
     public boolean testsuiteNameMatchRegularExpression(Test test) {
-        return recognizerExpressionsTestsuite == null || recognizerExpressionsTestsuite.matchName(test.getTestname());
+        return recognizerExpressionsTestsuite == null || recognizerExpressionsTestsuite.validate(test.getTestname());
     }
     public boolean wasSuccessful() {
         return ( failureCount()== 0);

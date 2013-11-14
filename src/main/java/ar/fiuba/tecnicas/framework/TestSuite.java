@@ -4,7 +4,6 @@
 
 package ar.fiuba.tecnicas.framework;
 
-
 import java.util.Vector;
 /*
 Responsabilidad: almacenar test y testsuite en una estructura (es el la clase "composite")

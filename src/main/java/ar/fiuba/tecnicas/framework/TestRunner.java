@@ -2,13 +2,14 @@ package ar.fiuba.tecnicas.framework;
 
 import com.sun.javaws.exceptions.InvalidArgumentException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.PatternSyntaxException;
 
 /*
  Responsabilidad: Crear y correr test ya definidos o un grupo de test definidios filtrado con expresiones regulares
  */
-public class TestRunner extends TestListener{
+public class TestRunner {
     public static final int SUCCESS_EXIT = 0;
     public static final int FAILURE_EXIT = 1;
     public static final int EXCEPTION_EXIT = 2;
@@ -16,11 +17,18 @@ public class TestRunner extends TestListener{
     private String regexpTestcase;
     private String regexpTestsuite;
     private List<String> argtags;
+    private static TestCreator testCreator;
 
     public TestRunner() {
         this.resultPrinter= new ResultPrinter(System.out);
         regexpTestcase="";
         regexpTestsuite="";
+        argtags = new ArrayList<String>();
+
+    }
+
+    public void setListener(TestListener listener) {
+
     }
 
     public void setRegexpTestcase(String regexpTestcase) {
@@ -33,6 +41,11 @@ public class TestRunner extends TestListener{
 
     public void setArgtags(List<String> argtags) {
         this.argtags = argtags;
+    }
+
+
+    public static void setCreatorTest(TestCreator testCreator) {
+        TestRunner.testCreator = testCreator;
     }
 
     public static void main(String args[]) {
@@ -58,21 +71,30 @@ public class TestRunner extends TestListener{
         }
     }
     private Test getTest() throws Exception {
-        return AllTests.suite();
+        return testCreator.getTest();
     }
     private TestReport start() throws Throwable {
         Test test= getTest();
         return doRun(test);
     }
     private TestReport doRun(Test suite) throws Throwable {
-        TestReport result = new TestReport();
-        result.initializeRecognizerExpression(regexpTestcase,regexpTestsuite);
-        result.addListener(resultPrinter);
+        TestReport result = createTestReport();
+
         long startTime = System.currentTimeMillis();
         suite.run(result);
         long endTime = System.currentTimeMillis();
         long runTime = endTime - startTime;
         resultPrinter.printFooter(result, runTime);
+        return result;
+    }
+
+    private TestReport createTestReport() {
+        TestReport result = new TestReport();
+
+        result.setRecognizerExpressionsTestcase(new PatternRecognizer(regexpTestcase));
+        result.setRecognizerExpressionsTestsuite(new PatternRecognizer(regexpTestsuite));
+        result.setRecognizerTag(new RecognizerTag(argtags));
+        result.addListener(resultPrinter);
         return result;
     }
 }
