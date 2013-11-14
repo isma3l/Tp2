@@ -4,7 +4,7 @@ import java.io.PrintStream;
 import java.text.NumberFormat;
 
 public class ResultPrinter implements TestListener{
-    PrintStream printStream;
+    private PrintStream printStream;
 
     public ResultPrinter(PrintStream writer) {
         printStream = writer;

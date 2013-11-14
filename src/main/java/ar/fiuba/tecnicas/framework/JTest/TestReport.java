@@ -9,6 +9,7 @@ public class TestReport {
     private int oktest;
     private int errortest;
     private int failedtest;
+    private boolean firsttimeintest;
     private PatternRecognizer recognizerExpressionsTestcase;
     private PatternRecognizer recognizerExpressionsTestsuite;
     private RecognizerTag recognizerTags;
@@ -16,9 +17,6 @@ public class TestReport {
     public void setFirsttimeintest(boolean firsttimeintest) {
         this.firsttimeintest = firsttimeintest;
     }
-
-    private boolean firsttimeintest;
-
     public TestReport() {
         testListeners = new ArrayList<TestListener>();
         runTests = 0;

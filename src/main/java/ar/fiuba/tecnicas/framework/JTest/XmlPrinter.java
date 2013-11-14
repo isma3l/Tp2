@@ -12,7 +12,7 @@ public class XmlPrinter implements TestListener {
     private String time;
     private Throwable throwable;
     private FileWriter fileWriter;
-    PrintWriter printer;
+    private PrintWriter printer;
 
     public XmlPrinter() {
         namesTestSuites = new ArrayList<String>();
