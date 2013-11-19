@@ -94,7 +94,7 @@ public class TestReport {
     }
 
     private boolean validateTestCase(TestCase test) {
-        return (testNameMatchRegularExpression(test)) && validateTagTestCase(test) && !test.isSkype();
+        return (testNameMatchRegularExpression(test)) && validateTagTestCase(test) && !test.getSkip();
     }
 
     private boolean validateTagTestCase(TestCase test) {
@@ -105,7 +105,7 @@ public class TestReport {
         return recognizerExpressionsTestcase == null || recognizerExpressionsTestcase.validate(test.toString());
     }
     public boolean testsuiteNameMatchRegularExpression(Test test) {
-        return recognizerExpressionsTestsuite == null || recognizerExpressionsTestsuite.validate(test.getTestname());
+        return recognizerExpressionsTestsuite == null || recognizerExpressionsTestsuite.validate(test.toString());
     }
     public boolean wasSuccessful() {
         return ( failureCount()== 0);

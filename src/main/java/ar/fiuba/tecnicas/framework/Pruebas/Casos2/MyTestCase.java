@@ -11,7 +11,7 @@ public class MyTestCase extends TestCase {
 
     @Override
     public void runTest() {
-        Assert.assertFalse(false);
-        Assert.assertTrue(true);
+        assertFalse(false);
+        assertTrue(true);
     }
 }
